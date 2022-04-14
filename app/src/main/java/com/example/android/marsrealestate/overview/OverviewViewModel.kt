@@ -65,7 +65,7 @@ class OverviewViewModel : ViewModel() {
     }
 
     /**
-     * Sets the value of the status LiveData to the Mars API status.
+     * Do the background request and update the status.
      */
     private fun getMarsRealEstateProperties(filter: MarsApiFilter) {
         viewModelScope.launch {
