@@ -56,7 +56,6 @@ class OverviewViewModel : ViewModel() {
         _navigateToSelectedProperty.value = null
     }
 
-
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
      */
@@ -71,10 +70,11 @@ class OverviewViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val listResult = MarsApi.retrofitService.getProperties(filter.value)
-                _status.value = MarsApiStatus.DONE
+                _status.value = MarsApiStatus.LOADING
 
                 if(listResult.isNotEmpty()){
                     _properties.value = listResult
+                    _status.value = MarsApiStatus.DONE
                 }
             }catch (e: Exception){
                 _status.value = MarsApiStatus.ERROR
